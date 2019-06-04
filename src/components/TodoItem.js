@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+/***
+ * propTypes are use for validation of props, is good practice to use them
+ */
+import PropTypes from 'prop-types';
 
 export class TodoItem extends Component {
   render() {
@@ -8,6 +12,10 @@ export class TodoItem extends Component {
       </div>
     )
   }
+}
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired
 }
 
 export default TodoItem
