@@ -6,7 +6,7 @@ class Todos extends Component {
   render() {
 
     return this.props.todos.map((todo) => (
-      <TodoItem />
+      <TodoItem key={todo.id} todo={todo}/>
     ));
   }
 }
