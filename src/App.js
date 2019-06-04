@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Todos from './components/Todos'
 
@@ -8,7 +8,7 @@ class App extends Component {
       {
         id: 1,
         title: 'Do React Poc.',
-        completed: true
+        completed: false
       },
       {
         id: 2,
@@ -18,15 +18,26 @@ class App extends Component {
       {
         id: 3,
         title: 'Go for the swimming',
-        completed: true
+        completed: false
       },
     ]
   }
-  render(){
-    console.log(this.state.todos);
+  // mark complete toggle state
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map((todo) => { 
+        if(todo.id === id){
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  }
+
+  render() {
     return (
       <div className="App">
-       <Todos todos={this.state.todos}/>
+        <Todos todos={this.state.todos} markComplete={this.markComplete} />
       </div>
     );
   }
