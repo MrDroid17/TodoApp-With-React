@@ -27,8 +27,8 @@ class App extends Component {
   // mark complete toggle state
   markComplete = (id) => {
     this.setState({
-      todos: this.state.todos.map((todo) => { 
-        if(todo.id === id){
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
@@ -37,9 +37,20 @@ class App extends Component {
   }
 
   // delete todo
-  delTodo = (id) =>{
+  delTodo = (id) => {
     this.setState({
-      todos: [...this.state.todos.filter( todo => todo.id !== id)]
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
+    })
+  }
+
+  addTodo = (title) => {
+    const newTodo = {
+      id: 4,
+      title,
+      completed: false
+    }
+    this.setState({
+      todos: [...this.state.todos, newTodo]
     })
   }
 
@@ -47,9 +58,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-        <Header/>
-        <AddTodo/>
-        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+          <Header />
+          <AddTodo addTodo={this.addTodo} />
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
 
         </div>
       </div>
