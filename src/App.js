@@ -6,26 +6,20 @@ import Header from './components/layout/Header';
 import AddTodo from './components/AddTodo';
 import uuid from 'uuid';
 import About from './components/pages/About';
+import Axios from 'axios';
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: 'Do React Poc.',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Do C Sharp language',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Go for the swimming',
-        completed: false
-      },
-    ]
+    todos: []
+  }
+  /***
+   * life-Cycle maethod component did get mount
+   */
+  componentDidMount(){
+    Axios.get('https://jsonplaceholder.typicode.com/todos?_limit=15')
+    .then(res=>{
+      this.setState({todos: res.data})
+    })
   }
   // mark complete toggle state
   markComplete = (id) => {
